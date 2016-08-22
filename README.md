@@ -1,19 +1,19 @@
 # Hirewand for Java
-A Java wrapper for Hirewand's HTTP APIs
+HireWand is a platform for parsing resumes and screening/shortlisting profiles for a given requirement. More details is found at www.hirewand.com. The APIs are available at api.hirewand.com. This project is the java wrapper over the HTTP APIs. The goal of this project is to make the use of the APIs very simple.
 
 ## Requirements
 You need to have a recent version of Java installed. 
 
 ## Dependencies
   - commons-httpclient-3.1.jar
-	- commons-logging-1.1.3.jar
-	- commons-codec-1.9.jar
-	- commons-cli-1.2.jar
-	- commons-collections-3.2.1.jar
-	- commons-io-2.4.jar
-	- commons-lang3-3.3.2.jar
-	- commons-pool2-2.2.jar
-	- json-simple-1.1.1.jar
+  - commons-logging-1.1.3.jar
+  - commons-codec-1.9.jar
+  - commons-cli-1.2.jar
+  - commons-collections-3.2.1.jar
+  - commons-io-2.4.jar
+  - commons-lang3-3.3.2.jar
+  - commons-pool2-2.2.jar
+  - json-simple-1.1.1.jar
 
 Note : All of the above jars are included in the project
 
@@ -26,8 +26,8 @@ Include all the dependencies (present inside lib)
 - HireWand will callback the registered url.
 - The response json can be parsed to get the profile details.
 
-## Structured form on resume
-Profile structure can be viewed at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ
+## Profile json
+Profile json structure can be viewed at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ
 
 
 
