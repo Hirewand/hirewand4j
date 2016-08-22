@@ -17,7 +17,7 @@ You need to have a recent version of Java installed.
 
 Note : All of the above jars are included in the project
 
-## Instalation
+## Installation
 Include all the dependencies (present inside lib)
 
 ## Usage
