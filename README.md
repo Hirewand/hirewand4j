@@ -23,37 +23,43 @@ Include all the dependencies (present inside lib)
 ## Usage
  - Initialize the UserSingleton instance at the start of your app proceeded by calling login function with user login credentials. 
  - From there on the same UserSingleton class can be used to interact with Hirewand HTTP APIs.
+<br />
+<br />
+ #### Constructor <br />
+      UserSingleton get()
+      Constructs object of UserSingleton    
 
- - Constructor
-    UserSingleton get() - Constructs object of UserSingleton    
-
- - Login
+ #### Login <br />
     void login(String email, String password) throws HttpException, IOException
-    Create HTTP connection with Hirewand. Gets authentication key which remains active for 8 hours of inactivity
+    Creates HTTP connection with Hirewand. Gets authentication key which remains active for 8 hours of inactivity
 
- - Send resume for parsing
-    String call(String function, HashMap params) throws HttpException, IOException
+ #### Send resume for parsing<br />
+    String call(String function, HashMap params) throws HttpException, IOException <br />
+    <br />
 
-    Makes call to Hirewand and return (String) response from the server
-    Parameters : 
-      function : type of call to be made.
-                 1. upload : for uploading resume into hirewand
-      params : HashMap<k,v> of parameters required for the call
-               Parameters mandatory for resume upload : 
-                 1. filename : name of the file uploading
-                 2. resume : Stream of the file
+    Makes call to Hirewand and return (String) response from the server <br />
+    Parameters : <br />
+      function : type of call to be made. <br />
+                1. upload : for uploading resume into hirewand <br />
+                <br />
+      params : HashMap<k,v> of parameters required for the call <br />
+               Parameters mandatory for resume upload : <br />
+                1. filename : name of the file uploading <br />
+                2. resume : Stream of the file <br />
+    <br />
+ #### Get profiles <br />
+    List call_list(String function, HashMap params) throws Exception <br /> 
     
- - Get profiles 
-    List call_list(String function, HashMap params) throws Exception  
-    
-    Makes call to Hirewand and return (List) response from the server
-    Parameters : 
-      function : type of call to be made.
-                 1. profiles : for receiving profiles of the uploaded resumes
-      params : HashMap<k,v> of parameters required for the call
-               Parameters mandatory for resume upload : 
-                 1. size : (Integer) number of profiles (1-100)
-                 2. since : (Long) time in milliseconds, returns the profiles created after this time
+    Makes call to Hirewand and return (List) response from the server <br />
+    Parameters : <br />
+      	function : type of call to be made. <br />
+		1. profiles : for receiving profiles of the uploaded resumes <br />
+		<br />
+      	params : HashMap<k,v> of parameters required for the call <br />
+               	Parameters mandatory for resume upload : <br />
+		<br />
+                1. size : (Integer) number of profiles (1-100) <br />
+                2. since : (Long) time in milliseconds, returns the profiles created after this time <br />
 
 
 ## Example
