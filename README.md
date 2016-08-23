@@ -30,36 +30,36 @@ Include all the dependencies (present inside lib)
       Constructs object of UserSingleton    
 
  #### Login <br />
-    void login(String email, String password) throws HttpException, IOException
+    void login(String email, String password) throws HttpException, IOException <br />
     Creates HTTP connection with Hirewand. Gets authentication key which remains active for 8 hours of inactivity
 
  #### Send resume for parsing<br />
     String call(String function, HashMap params) throws HttpException, IOException <br />
-    <br />
-
     Makes call to Hirewand and return (String) response from the server <br />
+    <br />
     Parameters : <br />
-      function : type of call to be made. <br />
-                1. upload : for uploading resume into hirewand <br />
+    &nbsp;&nbsp;function : type of call to be made. <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;1. upload : for uploading resume into hirewand <br />
                 <br />
-      params : HashMap<k,v> of parameters required for the call <br />
-               Parameters mandatory for resume upload : <br />
-                1. filename : name of the file uploading <br />
-                2. resume : Stream of the file <br />
+    &nbsp;&nbsp;params : HashMap<k,v> of parameters required for the call <br />
+    <br />
+    &nbsp;&nbsp;Parameters mandatory for resume upload : <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;1. filename : name of the file uploading <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;2. resume : Stream of the file <br />
     <br />
  #### Get profiles <br />
     List call_list(String function, HashMap params) throws Exception <br /> 
     
     Makes call to Hirewand and return (List) response from the server <br />
     Parameters : <br />
-      	function : type of call to be made. <br />
-		1. profiles : for receiving profiles of the uploaded resumes <br />
+    &nbsp;&nbsp;function : type of call to be made. <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;1. profiles : for receiving profiles of the uploaded resumes <br />
 		<br />
-      	params : HashMap<k,v> of parameters required for the call <br />
-               	Parameters mandatory for resume upload : <br />
+    &nbsp;&nbsp;params : HashMap<k,v> of parameters required for the call <br />
+    &nbsp;&nbsp;Parameters mandatory for resume upload : <br />
 		<br />
-                1. size : (Integer) number of profiles (1-100) <br />
-                2. since : (Long) time in milliseconds, returns the profiles created after this time <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;1. size : (Integer) number of profiles (1-100) <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;2. since : (Long) time in milliseconds, returns the profiles created after this time <br />
 
 
 ## Example
