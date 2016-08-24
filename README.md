@@ -15,51 +15,49 @@ You need to have a recent version of Java installed.
   - commons-pool2-2.2.jar
   - json-simple-1.1.1.jar
 
-Note : All of the above jars are included in the project
+Note : All of the above jars are included in /lib folder in the project
 
 ## Installation
 Include all the dependencies (present inside lib)
 
 ## Usage
- - Initialize the UserSingleton instance at the start of your app proceeded by calling login function with user login credentials. 
- - From there on the same UserSingleton class can be used to interact with Hirewand HTTP APIs.
+ - Initialize the HWSingleton instance at the start of your application by calling login function with user login credentials.
+ - Use HWSingleton singleton instance to interact with Hirewand. 
 <br />
 <br />
  #### Constructor <br />
-      UserSingleton get()
-      Constructs object of UserSingleton    
+      HWSingleton get()
+      Get the signleton instance of HWSingleton   
 
  #### Login <br />
     void login(String email, String password) throws HttpException, IOException <br />
-    Creates HTTP connection with Hirewand. Gets authentication key which remains active for 8 hours of inactivity
+    Creates a connection with Hirewand. This needs to be done only at the start of your application.
 
- #### Send resume for parsing<br />
-    String call(String function, HashMap params) throws HttpException, IOException <br />
-    Makes call to Hirewand and return (String) response from the server <br />
-    <br />
-    Parameters : <br />
-    &nbsp;&nbsp;function : type of call to be made. <br />
-    &nbsp;&nbsp;&nbsp;&nbsp;1. upload : for uploading resume into hirewand <br />
-                <br />
-    &nbsp;&nbsp;params : HashMap<k,v> of parameters required for the call <br />
-    <br />
-    &nbsp;&nbsp;Parameters mandatory for resume upload : <br />
-    &nbsp;&nbsp;&nbsp;&nbsp;1. filename : name of the file uploading <br />
-    &nbsp;&nbsp;&nbsp;&nbsp;2. resume : Stream of the file <br />
-    <br />
- #### Get profiles <br />
-    List call_list(String function, HashMap params) throws Exception <br /> 
-    
-    Makes call to Hirewand and return (List) response from the server <br />
-    Parameters : <br />
-    &nbsp;&nbsp;function : type of call to be made. <br />
-    &nbsp;&nbsp;&nbsp;&nbsp;1. profiles : for receiving profiles of the uploaded resumes <br />
-		<br />
-    &nbsp;&nbsp;params : HashMap<k,v> of parameters required for the call <br />
-    &nbsp;&nbsp;Parameters mandatory for resume upload : <br />
-		<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;1. size : (Integer) number of profiles (1-100) <br />
-    &nbsp;&nbsp;&nbsp;&nbsp;2. since : (Long) time in milliseconds, returns the profiles created after this time <br />
+ #### Pushing resume to HireWand (for parsing and indexing)<br />
+    &nbsp;&nbsp;Function to call: <br />
+    &nbsp;&nbsp;&nbsp;String call(String function, HashMap params) throws HttpException, IOException </br>
+    &nbsp;&nbsp;&nbsp;This function is used to make any call to HireWand supported functions, the below example is for upload of a &nbsp;&nbsp;&nbsp;resume, for indexing and parsing.</br>
+    &nbsp;&nbsp;Parameters for Upload:</br>
+    &nbsp;&nbsp;&nbsp;function: "upload"<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;Calls the HireWand supported function to upload the resume<br />
+    &nbsp;&nbsp;&nbsp;params: {filename:<name of the file being uploaded, with extension>, resume: <binary stream of the resume>}<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;HashMap of parameters required for the call, in this case for "upload" function.<br />
+
+    &nbsp;&nbsp;Returns: json with the person id that needs to be stored for future reference to this profile in HireWand.<br />
+    &nbsp;&nbsp;&nbsp;The structure of this json is documented at <<>><br />
+
+ #### Fetching the parsed profiles: <br />
+    &nbsp;Function to call:<br />
+    &nbsp;&nbsp;&nbsp;String call_list(String function, HashMap params) throws HttpException, IOException <br />
+    &nbsp;&nbsp;&nbsp;This function is used to make any call to HireWand supported functions. There the function returns a list of &nbsp;&nbsp;&nbsp;objects.<br />
+    &nbsp;Parameters to get the latest profiles parsed:<br />
+    &nbsp;&nbsp;&nbsp;function: "profiles"<br />
+    &nbsp;&nbsp;&nbsp;Calls the HireWand supported function to get the latest profiles parsed.<br />
+	
+    &nbsp;&nbsp;&nbsp;params: {size:<number of profiles to return, takes values between 1-100>, since: <Long value, time in milliseconds, returns profiles created after this time>}<br />
+    &nbsp;&nbsp;&nbsp;HashMap of parameters required for the call, in this case for "upload" function.<br />
+
+    &nbsp;Returns: List of profile objects. A profile object is a map with the structure documented at <<>><br />
 
 
 ## Example
@@ -67,12 +65,12 @@ Include all the dependencies (present inside lib)
   ```
   HashMap paramMap = new HashMap();
 		
-	UserSingleton user = UserSingleton.get(); // getting instance of User class
+	HWSingleton hw = HWSingleton.get(); // getting instance of HWSingleton class
 	/* ------- Log into Hirewand as user -------*/
-	user.login("your email id","your password");
+	hw.login("your email id","your password");
 
 	/* ------- Set a callback for all the request to hirewand -------*/
-	user.setCallback("Publically accessible callback url"); // if you have different callback for every resume, callback can be sent in paramMap to call function,
+	hw.setCallback("Publically accessible callback url"); // if you have different callback for every resume, callback can be sent in paramMap to call function,
 															// example paramMap.put("callback","Publically accessible callback url");
 	
 	File file = new File("Path to resume"); // file object of resume
@@ -83,7 +81,7 @@ Include all the dependencies (present inside lib)
 	paramMap.put("resume",stream);
 	
 	/* ------- Upload resume to hirewand -------*/
-	String resp = user.call("upload",paramMap);
+	String resp = hw.call("upload",paramMap);
 	
 	/* ------- Print the response from hirewand -------*/
 	System.out.println (new JSONParser().parse(resp)); // reading response received
@@ -106,7 +104,7 @@ Include all the dependencies (present inside lib)
 	HashMap profilesParamMap = new HashMap();
 	profilesParamMap.put("size", 50);
 	profilesParamMap.put("since", 1456830717016L); // adding UpdateDateMS of the last profile received
-	List profiles = user.call_list("profiles", profilesParamMap);
+	List profiles = hw.call_list("profiles", profilesParamMap);
 	for(Object profile : profiles){ //iterating over the result set
 		System.out.println(profile);
 	}
