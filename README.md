@@ -50,13 +50,13 @@ Include all the dependencies (present inside lib)
  #### Fetching the parsed profiles: <br />
     &nbsp;Function to call:<br />
     &nbsp;&nbsp;&nbsp;<sub>String call_list(String function, HashMap params) throws HttpException, IOException </sub><br />
-    &nbsp;&nbsp;&nbsp;<sub>This function is used to make any call to HireWand supported functions. There the function returns a list of &nbsp;&nbsp;&nbsp;objects.<br /></sub>
+    &nbsp;&nbsp;&nbsp;&nbsp;<sub>This function is used to make any call to HireWand supported functions. There the function returns a list of objects.<br />
+    <br /></sub>
     &nbsp;Parameters to get the latest profiles parsed:<br />
     &nbsp;&nbsp;&nbsp;<sub>function: "profiles"<br /></sub>
-    &nbsp;&nbsp;&nbsp;<sub>Calls the HireWand supported function to get the latest profiles parsed.<br /></sub>
-	
+    &nbsp;&nbsp;&nbsp;&nbsp;<sub>Calls the HireWand supported function to get the latest profiles parsed.<br /></sub>
     &nbsp;&nbsp;&nbsp;<sub>params: {size:<number of profiles to return, takes values between 1-100>, since: <Long value, time in milliseconds, returns profiles created after this time>}<br /></sub>
-    &nbsp;&nbsp;&nbsp;<sub>HashMap of parameters required for the call, in this case for "upload" function.<br /></sub>
+    &nbsp;&nbsp;&nbsp;&nbsp;<sub>HashMap of parameters required for the call, in this case for "upload" function.<br /></sub>
 
     &nbsp;Returns: List of profile objects. A profile object is a map with the structure documented at <<>><br />
 
