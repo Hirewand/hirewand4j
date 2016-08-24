@@ -30,12 +30,12 @@ Include all the dependencies (present inside lib)
       Get the signleton instance of HWSingleton   
 
  #### Login <br />
-    void login(String email, String password) throws HttpException, IOException <br />
-    Creates a connection with Hirewand. This needs to be done only at the start of your application.
+    void login(String email, String password) throws HWHTTPException <br />
+    &nbsp;&nbsp;&nbsp;<sub>Creates a connection with Hirewand. This needs to be done only at the start of your application.</sub>
 
  #### Pushing resume to HireWand (for parsing and indexing)<br />
     &nbsp;&nbsp;Function to call: <br />
-    &nbsp;&nbsp;<sub>String call(String function, HashMap params) throws HttpException, IOException</br></sub>
+    &nbsp;&nbsp;<sub>String call(String function, HashMap params) throws InvalidRequestException, HWHTTPException</br></sub>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>This function is used to make any call to HireWand supported functions, the below example is for upload of a resume, for indexing and parsing.</br></sub>
     </br>
     &nbsp;&nbsp;Parameters for Upload:</br>
@@ -45,11 +45,11 @@ Include all the dependencies (present inside lib)
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>HashMap of parameters required for the call, in this case for "upload" function.<br /></sub>
     </br>
     &nbsp;&nbsp;Returns: json with the person id that needs to be stored for future reference to this profile in HireWand.<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;<sub>The structure of this json is documented at <<>><br /></sub>
+    &nbsp;&nbsp;&nbsp;&nbsp;<sub>The structure of this json is documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=1056523406<br /></sub>
 
  #### Fetching the parsed profiles: <br />
     &nbsp;Function to call:<br />
-    &nbsp;&nbsp;&nbsp;<sub>String call_list(String function, HashMap params) throws HttpException, IOException </sub><br />
+    &nbsp;&nbsp;&nbsp;<sub>String call_list(String function, HashMap params) throws InvalidRequestException, HWHTTPException</sub><br />
     &nbsp;&nbsp;&nbsp;&nbsp;<sub>This function is used to make any call to HireWand supported functions. There the function returns a list of objects.<br />
     <br /></sub>
     &nbsp;Parameters to get the latest profiles parsed:<br />
@@ -58,9 +58,35 @@ Include all the dependencies (present inside lib)
     &nbsp;&nbsp;&nbsp;<sub>params: {size:<number of profiles to return, takes values between 1-100>, since: <Long value, time in milliseconds, returns profiles created after this time>}<br /></sub>
     &nbsp;&nbsp;&nbsp;&nbsp;<sub>HashMap of parameters required for the call, in this case for "upload" function.<br /></sub>
 
-    &nbsp;Returns: List of profile objects. A profile object is a map with the structure documented at <<>><br />
+    &nbsp;Returns: List of profile objects. A profile object is a map with the structure documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=0<br />
 
+### Exception handling : 
+    
+    Types of exceptions:
+    	1. HWHTTPException
+    	2. InvalidRequestException
 
+    Function to call:
+    	String getMessage()
+    	   Returns the cause of this exception<br />
+    
+    	int getCode()
+    	   Returns the status code for this exception
+    	
+    Exception status codes :	
+        1. 401 : No internet connect
+           - Check your internet connection & try again
+        2. 401 : Login failure
+           - Check your login credentials & try again
+    	3. 500 : Invalid response from Hirewand
+    	   - Try again in sometime
+    	4. 503 : Connection refused
+       	   - Try again in sometime
+    	5. 701 : Call parameter missing
+    	   - Check the values in hashmap of params you are passing to the functions
+    	6. 702 : Invalid call parameter
+    	   - Check the data type of params you are passing to the functions
+    
 ## Example
 
   ```
@@ -114,7 +140,7 @@ Include all the dependencies (present inside lib)
   ```
 
 ## Profile json
-Profile json structure can be viewed at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ
+Profile json structure can be viewed at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=0
 
 
 
