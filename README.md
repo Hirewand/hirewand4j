@@ -58,7 +58,8 @@ Include all the dependencies (present inside lib)
     &nbsp;&nbsp;&nbsp;<sub>params: {size:<number of profiles to return, takes values between 1-100>, since: <Long value, time in milliseconds, returns profiles created after this time>}<br /></sub>
     &nbsp;&nbsp;&nbsp;&nbsp;<sub>HashMap of parameters required for the call, in this case for "upload" function.<br /></sub>
 
-    &nbsp;Returns: List of profile objects. A profile object is a map with the structure documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=0<br />
+    &nbsp;Returns: List of profile objects. <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;<sub>A profile object is a map with the structure documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=0</sub><br />
 
 ### Exception handling : 
     
