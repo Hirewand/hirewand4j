@@ -91,53 +91,67 @@ Include all the dependencies (present inside lib)
 ## Example
 
   ```
-  HashMap paramMap = new HashMap();
+  	HashMap paramMap = new HashMap();
+  	try{
+		HWSingleton hw = HWSingleton.get(); // getting instance of User class
+		/* ------- Log into Hirewand as user -------*/
+		hw.login("your email id","your password");
+
+		/* ------- Optional: Set a callback for all the request to hirewand -------*/
+		hw.setCallback("Publically accessible callback url"); // if you have different callback for every resume, callback can be sent in paramMap to call function,
+																// example paramMap.put("callback","Publically accessible callback url");
 		
-	HWSingleton hw = HWSingleton.get(); // getting instance of HWSingleton class
-	/* ------- Log into Hirewand as user -------*/
-	hw.login("your email id","your password");
-
-	/* ------- Set a callback for all the request to hirewand -------*/
-	hw.setCallback("Publically accessible callback url"); // if you have different callback for every resume, callback can be sent in paramMap to call function,
-															// example paramMap.put("callback","Publically accessible callback url");
-	
-	File file = new File("Path to resume"); // file object of resume
-	InputStream stream = new FileInputStream(file); // stream of resume
-	
-	/* ------- Create a HashMap with all the parameters to be send i.e Resume's filename, Stream of resume & callback (if required)*/
-	paramMap.put("filename","filename with extension (like abc.doc)");
-	paramMap.put("resume",stream);
-	
-	/* ------- Upload resume to hirewand -------*/
-	String resp = hw.call("upload",paramMap);
-	
-	/* ------- Print the response from hirewand -------*/
-	System.out.println (new JSONParser().parse(resp)); // reading response received
-	
-	/* SAMPLE RESPONSE FROM HIREWAND ON SUCCESS
-	 * {
-	 *    status : 'success',
-	 *    message : 'file uploaded successfully',
-	 *    personid : '56adas6d5a4sda56das5d6' // unique hirewand id for resume (mapping to internal key is recommended)
-	 * }		 
-	 * 
-	 * SAMPLE RESPONSE FROM HIREWAND ON FAILURE
-	 * {
-	 *    status : 'fail',
-	 *    message : Reason for failure,
-	 * }	
-	 * */
-	
-	/* ------- Get profiles list --------*/
-	HashMap profilesParamMap = new HashMap();
-	profilesParamMap.put("size", 50);
-	profilesParamMap.put("since", 1456830717016L); // adding UpdateDateMS of the last profile received
-	List profiles = hw.call_list("profiles", profilesParamMap);
-	for(Object profile : profiles){ //iterating over the result set
-		System.out.println(profile);
+		File file = new File("Path to resume"); // file object of resume
+		InputStream stream = new FileInputStream(file); // stream of resume
+		
+		/* ------- Create a HashMap with all the parameters to be send i.e Resume's filename, Stream of resume & callback (if required)*/
+		paramMap.put("filename","filename with extension (like abc.doc)");
+		paramMap.put("resume",stream);
+		
+		/* ------- Upload resume to hirewand -------*/
+		String resp = hw.call("upload",paramMap);
+		
+		/* ------- Print the response from hirewand -------*/
+		System.out.println (new JSONParser().parse(resp)); // reading response received
+		
+		/* SAMPLE RESPONSE FROM HIREWAND ON SUCCESS
+		 * {
+		 *    status : 'success',
+		 *    message : 'file uploaded successfully',
+		 *    personid : '56adas6d5a4sda56das5d6' // unique hirewand id for resume (mapping to internal key is recommended)
+		 * }		 
+		 * 
+		 * SAMPLE RESPONSE FROM HIREWAND ON FAILURE
+		 * {
+		 *    status : 'fail',
+		 *    message : Reason for failure,
+		 * }	
+		 * */
+		
+		/* ------- Get profiles list --------*/
+			HashMap profilesParamMap = new HashMap();
+			profilesParamMap.put("size", 50);
+			profilesParamMap.put("since", 1456830717016L); // adding UpdateDateMS of the last profile received
+			List profiles = hw.call_list("profiles", profilesParamMap);
+			for(Object profile : profiles){ //iterating over the result set
+				System.out.println(profile);
+			}
+		
+		
+		/* UpdateDateMS inside each profile can be used to get next batch of profiles */
 	}
-	/* UpdateDateMS inside each profile can be used to get next batch of profiles */
-
+	catch(InvalidRequestException e){
+		System.out.println(e.getMessage());
+		System.out.println(e.getCode());
+	}
+	catch(HWHTTPException e){
+		System.out.println(e.getMessage());
+		System.out.println(e.getCode());
+	}
+	catch(Exception e){
+		System.out.print("Exception");
+		e.printStackTrace();
+	}
   ```
 
 ## Profile json
