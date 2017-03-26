@@ -37,7 +37,6 @@ void login(String email, String password) throws HWHTTPException <br />
 Creates a connection with Hirewand. This needs to be done only at the start of your application.<br/>
 
 #### Pushing resume to HireWand (for parsing and indexing)<br />
-<br />
 
 __Function to call:__<br />
 
@@ -52,7 +51,6 @@ __Parameters for Upload:__<br />
 function: "upload"  (Calls the HireWand supported function to upload the resume)<br />
 params: {filename:<name of the file being uploaded, with extension>, resume: <binary stream of the resume>}<br />
 HashMap of parameters required for the call, in this case for "upload" function.<br />
-<br/>
 
 __Returns:__<br /> 
 
@@ -60,19 +58,25 @@ json with the person id that needs to be stored for future reference to this pro
 The structure of this json is documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=1056523406<br />
 
 #### Fetching the parsed profiles: <br />
+
 __Function to call:__<br />
-```java
+
+```java 
 String call_list(String function, HashMap params) throws InvalidRequestException, HWHTTPException;
 ```
+
 This function is used to make any call to HireWand supported functions. There the function returns a list of objects.<br />
-<br />
-Parameters to get the latest profiles parsed:<br />
+
+__Parameters to get the latest profiles parsed:__<br />
+
 function: "profiles"<br />
 Calls the HireWand supported function to get the latest profiles parsed.<br />
 params: {size:<number of profiles to return, takes values between 1-100>, since: <Long value, time in milliseconds, returns profiles created after this time>}<br />
 HashMap of parameters required for the call, in this case for "upload" function.<br />
 
-__Returns:__<br /> List of profile objects. <br />
+__Returns:__<br /> 
+
+List of profile objects. <br />
 A profile object is a map with the structure documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=0<br />
 
 ### Exception handling : 
