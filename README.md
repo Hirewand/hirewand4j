@@ -25,16 +25,17 @@ Include all the dependencies (present inside lib)
  - Use HWSingleton singleton instance to interact with Hirewand. 
 <br />
 <br />
-#### Constructor <br />
+
+## Constructor <br />
 HWSingleton get()
 Get the signleton instance of HWSingleton   
 
-#### Login <br />
-```void login(String email, String password) throws HWHTTPException ```
-Creates a connection with Hirewand. This needs to be done only at the start of your application.
+## Login <br />
+    void login(String email, String password) throws HWHTTPException <br />
+    Creates a connection with Hirewand. This needs to be done only at the start of your application.
 
-#### Pushing resume to HireWand (for parsing and indexing)<br />
-__Function to call:__
+## Pushing resume to HireWand (for parsing and indexing)<br />
+    __Function to call:__
     <sub>String call(String function, HashMap params) throws InvalidRequestException, HWHTTPException<br/></sub>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>This function is used to make any call to HireWand supported functions, the below example is for upload of a resume, for indexing and parsing.<br/></sub>
     </br>
@@ -47,7 +48,7 @@ __Function to call:__
     &nbsp;&nbsp;Returns: json with the person id that needs to be stored for future reference to this profile in HireWand.<br />
     &nbsp;&nbsp;&nbsp;&nbsp;<sub>The structure of this json is documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=1056523406<br /></sub>
 
- #### Fetching the parsed profiles: <br />
+## Fetching the parsed profiles: <br />
     &nbsp;Function to call:<br />
     &nbsp;&nbsp;&nbsp;<sub>String call_list(String function, HashMap params) throws InvalidRequestException, HWHTTPException</sub><br />
     &nbsp;&nbsp;&nbsp;&nbsp;<sub>This function is used to make any call to HireWand supported functions. There the function returns a list of objects.<br />
@@ -61,7 +62,7 @@ __Function to call:__
     &nbsp;Returns: List of profile objects. <br />
     &nbsp;&nbsp;&nbsp;&nbsp;<sub>A profile object is a map with the structure documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=0</sub><br />
 
-### Exception handling : 
+## Exception handling : 
     
     Types of exceptions:
     	1. HWHTTPException
