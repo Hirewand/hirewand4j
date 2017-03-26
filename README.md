@@ -24,15 +24,15 @@ Include all the dependencies (present inside lib)
  - Initialize the HWSingleton instance at the start of your application by calling login function with user login credentials.
  - Use HWSingleton singleton instance to interact with Hirewand. 
 
- ### Constructor
+ ## Constructor
       HWSingleton get()
       Get the signleton instance of HWSingleton 
 
- #### Login
-    void login(String email, String password) throws HWHTTPException <br />
+ ## Login
+    ```void login(String email, String password) throws HWHTTPException```
     Creates a connection with Hirewand. This needs to be done only at the start of your application.
 
- #### Pushing resume to HireWand (for parsing and indexing)
+ ## Pushing resume to HireWand (for parsing and indexing)
     Function to call:
     String call(String function, HashMap params) throws InvalidRequestException, HWHTTPException
     This function is used to make any call to HireWand supported functions, the below example is for upload of a resume, for indexing and parsing.
