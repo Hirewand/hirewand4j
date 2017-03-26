@@ -34,7 +34,7 @@ Include all the dependencies (present inside lib)
     Creates a connection with Hirewand. This needs to be done only at the start of your application.
 
  #### Pushing resume to HireWand (for parsing and indexing)<br />
-    Function to call: <br />
+    __Function to call:__
     <sub>String call(String function, HashMap params) throws InvalidRequestException, HWHTTPException<br/></sub>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>This function is used to make any call to HireWand supported functions, the below example is for upload of a resume, for indexing and parsing.<br/></sub>
     </br>
