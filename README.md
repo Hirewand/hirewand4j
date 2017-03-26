@@ -38,18 +38,18 @@ Creates a connection with Hirewand. This needs to be done only at the start of y
 
 #### Pushing resume to HireWand (for parsing and indexing)<br />
 <br />
-__Function to call:__</br>
+__Function to call:__<br />
 ```java 
 String call(String function, HashMap params) throws InvalidRequestException, HWHTTPException<br/></sub>
 ```
-This function is used to make any call to HireWand supported functions, the below example is for upload of a resume, for indexing and parsing.<br/>
-</br>
-__Parameters for Upload:__</br>
+This function is used to make any call to HireWand supported functions, the below example is for upload of a resume, for indexing and parsing.<br />
+<br />
+__Parameters for Upload:__<br />
 function: "upload"  (Calls the HireWand supported function to upload the resume)<br />
 params: {filename:<name of the file being uploaded, with extension>, resume: <binary stream of the resume>}<br />
 HashMap of parameters required for the call, in this case for "upload" function.<br />
 <br/>
-__Returns:__</br> json with the person id that needs to be stored for future reference to this profile in HireWand.<br />
+__Returns:__<br /> json with the person id that needs to be stored for future reference to this profile in HireWand.<br />
 The structure of this json is documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=1056523406<br />
 
 #### Fetching the parsed profiles: <br />
