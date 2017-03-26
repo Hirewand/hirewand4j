@@ -23,43 +23,41 @@ Include all the dependencies (present inside lib)
 ## Usage
  - Initialize the HWSingleton instance at the start of your application by calling login function with user login credentials.
  - Use HWSingleton singleton instance to interact with Hirewand. 
-<br />
-<br />
- #### Constructor <br />
-      HWSingleton get()
-      Get the signleton instance of HWSingleton   
 
- #### Login <br />
+ ### Constructor
+      HWSingleton get()
+      Get the signleton instance of HWSingleton 
+
+ #### Login
     void login(String email, String password) throws HWHTTPException <br />
     Creates a connection with Hirewand. This needs to be done only at the start of your application.
 
- #### Pushing resume to HireWand (for parsing and indexing)<br />
-    __Function to call:__
-    <sub>String call(String function, HashMap params) throws InvalidRequestException, HWHTTPException<br/></sub>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>This function is used to make any call to HireWand supported functions, the below example is for upload of a resume, for indexing and parsing.<br/></sub>
-    </br>
-    &nbsp;&nbsp;Parameters for Upload:</br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<sub>function: "upload"<br /></sub>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>Calls the HireWand supported function to upload the resume<br /></sub>
-    &nbsp;&nbsp;&nbsp;&nbsp;<sub>params: {filename:<name of the file being uploaded, with extension>, resume: <binary stream of the resume>}<br /></sub>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>HashMap of parameters required for the call, in this case for "upload" function.<br /></sub>
-    <br/>
-    &nbsp;&nbsp;Returns: json with the person id that needs to be stored for future reference to this profile in HireWand.<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;<sub>The structure of this json is documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=1056523406<br /></sub>
+ #### Pushing resume to HireWand (for parsing and indexing)
+    Function to call:
+    String call(String function, HashMap params) throws InvalidRequestException, HWHTTPException
+    This function is used to make any call to HireWand supported functions, the below example is for upload of a resume, for indexing and parsing.
+    
+    Parameters for Upload:
+    function: "upload"
+    Calls the HireWand supported function to upload the resume
+    params: {filename:<<name of the file being uploaded, with extension>, resume: <binary stream of the resume>>}
+    HashMap of parameters required for the call, in this case for "upload" function.
+    
+    Returns: json with the person id that needs to be stored for future reference to this profile in HireWand.
+    The structure of this json is documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=1056523406
 
- #### Fetching the parsed profiles: <br />
-    &nbsp;Function to call:<br />
-    &nbsp;&nbsp;&nbsp;<sub>String call_list(String function, HashMap params) throws InvalidRequestException, HWHTTPException</sub><br />
-    &nbsp;&nbsp;&nbsp;&nbsp;<sub>This function is used to make any call to HireWand supported functions. There the function returns a list of objects.<br />
-    <br /></sub>
-    &nbsp;Parameters to get the latest profiles parsed:<br />
-    &nbsp;&nbsp;&nbsp;<sub>function: "profiles"<br /></sub>
-    &nbsp;&nbsp;&nbsp;&nbsp;<sub>Calls the HireWand supported function to get the latest profiles parsed.<br /></sub>
-    &nbsp;&nbsp;&nbsp;<sub>params: {size:<number of profiles to return, takes values between 1-100>, since: <Long value, time in milliseconds, returns profiles created after this time>}<br /></sub>
-    &nbsp;&nbsp;&nbsp;&nbsp;<sub>HashMap of parameters required for the call, in this case for "upload" function.<br /></sub>
+ #### Fetching the parsed profiles:
+    Function to call:
+    String call_list(String function, HashMap params) throws InvalidRequestException, HWHTTPException
+    This function is used to make any call to HireWand supported functions. There the function returns a list of objects.
+    Parameters to get the latest profiles parsed:<br />
+    function: "profiles"
+    Calls the HireWand supported function to get the latest profiles parsed.
+    params: {size:<<number of profiles to return, takes values between 1-100>>, since: <<Long value, time in milliseconds, returns profiles created after this time>>}
+    HashMap of parameters required for the call, in this case for "upload" function.
 
-    &nbsp;Returns: List of profile objects. <br />
-    &nbsp;&nbsp;&nbsp;&nbsp;<sub>A profile object is a map with the structure documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=0</sub><br />
+    Returns: List of profile objects.
+    A profile object is a map with the structure documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=0
 
 ### Exception handling : 
     
