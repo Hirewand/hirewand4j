@@ -29,7 +29,8 @@ Include all the dependencies (present inside lib)
       Get the signleton instance of HWSingleton 
 
  ## Login
-    ```void login(String email, String password) throws HWHTTPException```
+    ```void login(String email, String password) throws HWHTTPException
+    ```
     Creates a connection with Hirewand. This needs to be done only at the start of your application.
 
  ## Pushing resume to HireWand (for parsing and indexing)
