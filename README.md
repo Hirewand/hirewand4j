@@ -44,13 +44,12 @@ String call(String function, HashMap params) throws InvalidRequestException, HWH
 This function is used to make any call to HireWand supported functions, the below example is for upload of a resume, for indexing and parsing.<br/></sub>
 </br>
 &nbsp;&nbsp;Parameters for Upload:</br>
-&nbsp;&nbsp;&nbsp;&nbsp;<sub>function: "upload"<br /></sub>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>Calls the HireWand supported function to upload the resume<br /></sub>
-&nbsp;&nbsp;&nbsp;&nbsp;<sub>params: {filename:<name of the file being uploaded, with extension>, resume: <binary stream of the resume>}<br /></sub>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>HashMap of parameters required for the call, in this case for "upload" function.<br /></sub>
+&nbsp;&nbsp;&nbsp;&nbsp;function: "upload"<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Calls the HireWand supported function to upload the resume<br />
+&nbsp;&nbsp;&nbsp;params: {filename:<name of the file being uploaded, with extension>, resume: <binary stream of the resume>}<br />   &nbsp;&nbsp;&nbsp;&nbsp;HashMap of parameters required for the call, in this case for "upload" function.<br /></sub>
     <br/>
-    &nbsp;&nbsp;Returns: json with the person id that needs to be stored for future reference to this profile in HireWand.<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;<sub>The structure of this json is documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=1056523406<br /></sub>
+&nbsp;&nbsp;Returns: json with the person id that needs to be stored for future reference to this profile in HireWand.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<sub>The structure of this json is documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=1056523406<br />
 
 ## Fetching the parsed profiles: <br />
     &nbsp;Function to call:<br />
