@@ -32,19 +32,21 @@ Get the signleton instance of HWSingleton
 
 ## Login <br />
 ```java
-void login(String email, String password) throws HWHTTPException <br />
+void login(String email, String password) throws HWHTTPException;
 ```
 Creates a connection with Hirewand. This needs to be done only at the start of your application.
 
 ## Pushing resume to HireWand (for parsing and indexing)<br />
-    __Function to call:__
-    <sub>String call(String function, HashMap params) throws InvalidRequestException, HWHTTPException<br/></sub>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>This function is used to make any call to HireWand supported functions, the below example is for upload of a resume, for indexing and parsing.<br/></sub>
-    </br>
-    &nbsp;&nbsp;Parameters for Upload:</br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<sub>function: "upload"<br /></sub>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>Calls the HireWand supported function to upload the resume<br /></sub>
-    &nbsp;&nbsp;&nbsp;&nbsp;<sub>params: {filename:<name of the file being uploaded, with extension>, resume: <binary stream of the resume>}<br /></sub>
+__Function to call:__
+```java
+String call(String function, HashMap params) throws InvalidRequestException, HWHTTPException;
+```
+This function is used to make any call to HireWand supported functions, the below example is for upload of a resume, for indexing and parsing.<br/></sub>
+</br>
+&nbsp;&nbsp;Parameters for Upload:</br>
+&nbsp;&nbsp;&nbsp;&nbsp;<sub>function: "upload"<br /></sub>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>Calls the HireWand supported function to upload the resume<br /></sub>
+&nbsp;&nbsp;&nbsp;&nbsp;<sub>params: {filename:<name of the file being uploaded, with extension>, resume: <binary stream of the resume>}<br /></sub>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>HashMap of parameters required for the call, in this case for "upload" function.<br /></sub>
     <br/>
     &nbsp;&nbsp;Returns: json with the person id that needs to be stored for future reference to this profile in HireWand.<br />
