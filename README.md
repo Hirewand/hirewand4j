@@ -38,6 +38,7 @@ Creates a connection with Hirewand. This needs to be done only at the start of y
 
 #### Pushing resume to HireWand (for parsing and indexing)<br />
 <br />
+
 __Function to call:__<br />
 
 ```java 
