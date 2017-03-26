@@ -24,7 +24,6 @@ Include all the dependencies (present inside lib)
 - Initialize the HWSingleton instance at the start of your application by calling login function with user login credentials.
 - Use HWSingleton singleton instance to interact with Hirewand. 
 <br />
-<br />
 
 #### Constructor <br />
 HWSingleton get()
