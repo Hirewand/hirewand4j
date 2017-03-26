@@ -31,19 +31,19 @@ Include all the dependencies (present inside lib)
 
  #### Login <br />
     void login(String email, String password) throws HWHTTPException <br />
-    &nbsp;&nbsp;&nbsp;<sub>Creates a connection with Hirewand. This needs to be done only at the start of your application.</sub>
+    <sub>Creates a connection with Hirewand. This needs to be done only at the start of your application.</sub>
 
  #### Pushing resume to HireWand (for parsing and indexing)<br />
     &nbsp;&nbsp;Function to call: <br />
-    &nbsp;&nbsp;<sub>String call(String function, HashMap params) throws InvalidRequestException, HWHTTPException</br></sub>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>This function is used to make any call to HireWand supported functions, the below example is for upload of a resume, for indexing and parsing.</br></sub>
+    &nbsp;&nbsp;<sub>String call(String function, HashMap params) throws InvalidRequestException, HWHTTPException<br/></sub>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>This function is used to make any call to HireWand supported functions, the below example is for upload of a resume, for indexing and parsing.<br/></sub>
     </br>
     &nbsp;&nbsp;Parameters for Upload:</br>
     &nbsp;&nbsp;&nbsp;&nbsp;<sub>function: "upload"<br /></sub>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>Calls the HireWand supported function to upload the resume<br /></sub>
     &nbsp;&nbsp;&nbsp;&nbsp;<sub>params: {filename:<name of the file being uploaded, with extension>, resume: <binary stream of the resume>}<br /></sub>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub>HashMap of parameters required for the call, in this case for "upload" function.<br /></sub>
-    </br>
+    <br/>
     &nbsp;&nbsp;Returns: json with the person id that needs to be stored for future reference to this profile in HireWand.<br />
     &nbsp;&nbsp;&nbsp;&nbsp;<sub>The structure of this json is documented at https://docs.google.com/spreadsheets/d/1kE3ygWLt4Xe0uUELXxwV7NbdbLnQxhjVbo9JgiYNVJQ/edit?pref=2&pli=1#gid=1056523406<br /></sub>
 
@@ -76,9 +76,9 @@ Include all the dependencies (present inside lib)
     	
     Exception status codes :	
         1. 401 : No internet connect
-           - Check your internet connection & try again
+           - Check your internet connection and try again
         2. 401 : Login failure
-           - Check your login credentials & try again
+           - Check your login credentials and try again
     	3. 500 : Invalid response from Hirewand
     	   - Try again in sometime
     	4. 503 : Connection refused
