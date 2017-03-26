@@ -25,6 +25,7 @@ Include all the dependencies (present inside lib)
 - Use HWSingleton singleton instance to interact with Hirewand. 
 <br />
 <br />
+
 #### Constructor <br />
 HWSingleton get()
 Get the signleton instance of HWSingleton   
